@@ -34,7 +34,7 @@ Projeto feito por um estudante de Ciência da Computação, em uso real no prime
 
 **Resultados**: período de 7, 30 ou 90 dias, comparação com o período anterior, NPS, distribuição das notas, dia da semana e turno:
 
-![Resultados](prints/dashboard-topo.jpg)
+![Resultados](prints/resultados.jpg)
 
 ![Nota por dia da semana e turno](prints/dashboard-dia-turno.jpg)
 
@@ -44,7 +44,13 @@ Projeto feito por um estudante de Ciência da Computação, em uso real no prime
 
 **Relatório para a equipe** (texto pronto para o WhatsApp):
 
-![Relatório para a equipe](prints/relatorio-equipe.jpg)
+![Relatório para a equipe](prints/relatorio.jpg)
+
+**Cartaz para imprimir**, nas versões clara e escura, com o QR code da pesquisa e o nome do negócio:
+
+| Claro | Escuro |
+|---|---|
+| ![Cartaz claro](prints/cartaz-claro.png) | ![Cartaz escuro](prints/cartaz-escuro.png) |
 
 > Os números dos prints são de exemplo, criados só para a demonstração, e o texto da IA no relatório foi simulado.
 

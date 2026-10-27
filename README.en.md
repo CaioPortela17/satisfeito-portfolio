@@ -34,7 +34,7 @@ Built by a Computer Science student, in real use at the first business (a snack 
 
 **Results**: 7, 30 or 90 day periods, comparison with the previous period, NPS, score distribution, weekday and shift:
 
-![Results](prints/dashboard-topo.jpg)
+![Results](prints/resultados.jpg)
 
 ![Score by weekday and shift](prints/dashboard-dia-turno.jpg)
 
@@ -44,7 +44,13 @@ Built by a Computer Science student, in real use at the first business (a snack 
 
 **Team report** (text ready for WhatsApp):
 
-![Team report](prints/relatorio-equipe.jpg)
+![Team report](prints/relatorio.jpg)
+
+**Poster to print**, in light and dark versions, with the survey QR code and the business name:
+
+| Light | Dark |
+|---|---|
+| ![Light poster](prints/cartaz-claro.png) | ![Dark poster](prints/cartaz-escuro.png) |
 
 > The numbers in the screenshots are sample data created only for the demo, and the AI text in the report was simulated. The app itself is in Portuguese.
 
