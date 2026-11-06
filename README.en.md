@@ -75,6 +75,8 @@ Built by a Computer Science student, in real use at the first business (a snack 
 - **Single-use invitation sign-up.** The owner generates an expiring link; the database stores only the code hash and the server "spends" the invite with one conditional `UPDATE`, so the same link cannot create two accounts.
 - **Accessibility and mobile-first.** 44 px touch targets, checked contrast, tested focus and screen reader, axe-core audit, Portuguese interface with no emojis (custom SVG icons).
 - **Right to erasure (LGPD).** Owners delete their account, companies, surveys and every response from their own dashboard.
+- **Installs as an app, no app store.** The dashboard is a PWA: manifest, custom icons and an "Add to home screen" button on Android. iPhone does not allow that button, so the dashboard shows the Safari step by step instead. No service worker on purpose: the dashboard depends on the database, so working offline would not help.
+- **Several companies under one login.** A selector switches company, and when creating a survey you can **copy the questions** from another company of the same owner instead of typing everything again. RLS rules guarantee only the owner's own surveys show up.
 
 ## Want to see the code?
 
