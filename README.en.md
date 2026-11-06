@@ -77,6 +77,8 @@ Built by a Computer Science student, in real use at the first business (a snack 
 - **Right to erasure (LGPD).** Owners delete their account, companies, surveys and every response from their own dashboard.
 - **Installs as an app, no app store.** The dashboard is a PWA: manifest, custom icons and an "Add to home screen" button on Android. iPhone does not allow that button, so the dashboard shows the Safari step by step instead. No service worker on purpose: the dashboard depends on the database, so working offline would not help.
 - **Several companies under one login.** A selector switches company, and when creating a survey you can **copy the questions** from another company of the same owner instead of typing everything again. RLS rules guarantee only the owner's own surveys show up.
+- **Filters on the response list.** Search in comments, score range and period, in a plain form (GET method, no JavaScript) with the values in the URL, so the link can be saved. Validation runs on the server and the logic lives in a Postgres function with SQL tests: the period uses the day in São Paulo, and `%` and `_` typed in the search count as plain text. The suspicious flag is still computed over all responses, and the CSV export follows the same filters.
+- **Ready-made survey for the customer.** The system owner, who maintains the question catalog, picks a survey and sends a copy to the customer's account, which finds it ready. The write uses the server key, but only after checking that the caller is the admin, that the survey is theirs and that the destination company belongs to someone else.
 
 ## Want to see the code?
 
