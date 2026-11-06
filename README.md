@@ -16,6 +16,12 @@ O cliente escaneia um **QR code** na mesa, no balcão ou na nota fiscal, respond
 
 Projeto feito por um estudante de Ciência da Computação, em uso real no primeiro negócio (uma lanchonete) e pensado para ser oferecido a outros.
 
+## Veja funcionando
+
+![Demonstração: o cliente responde a pesquisa e o dono vê os resultados](prints/demo-satisfeito.gif)
+
+Cerca de 20 segundos, com dados de exemplo (uma padaria fictícia): o cliente dá as notas e escreve um comentário, o dono vê os resultados com a comparação do período anterior, filtra as respostas por uma palavra e abre o cartaz com o QR code. A pesquisa é preenchida só até o botão **Enviar**, e nenhuma resposta foi enviada. A gravação é no computador; no celular a pesquisa ocupa a tela toda.
+
 ## Telas
 
 **Pesquisa que o cliente responde pelo celular** (abre pelo QR code, sem login). Nota de 1 a 10 e, se a nota for baixa, uma caixa opcional "Onde podemos melhorar?":

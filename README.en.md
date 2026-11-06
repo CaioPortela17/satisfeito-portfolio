@@ -16,6 +16,12 @@ Customers scan a **QR code** on the table, at the counter or on the receipt, ans
 
 Built by a Computer Science student, in real use at the first business (a snack bar) and designed to be offered to others.
 
+## See it working
+
+![Demo: the customer answers the survey and the owner sees the results](prints/demo-satisfeito.gif)
+
+About 20 seconds, with sample data (a fictional bakery): the customer gives scores and writes a comment, the owner sees the results with the comparison to the previous period, filters the responses by a word and opens the poster with the QR code. The survey is filled in only up to the **Enviar** (Send) button, and no response was submitted. It was recorded on a computer; on a phone the survey fills the whole screen. The app itself is in Portuguese.
+
 ## Screens
 
 **Survey answered on the phone** (opened by the QR code, no login). A 1 to 10 score and, when the score is low, an optional "Where can we improve?" box:
