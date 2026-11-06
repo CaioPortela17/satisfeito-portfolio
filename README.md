@@ -77,6 +77,8 @@ Projeto feito por um estudante de Ciência da Computação, em uso real no prime
 - **Direito de exclusão (LGPD).** O dono apaga a conta, as empresas, as pesquisas e todas as respostas pelo próprio painel.
 - **Instala como app, sem loja.** O painel é um PWA: manifesto, ícones próprios e um botão "Colocar na tela inicial" no Android. O iPhone não permite esse botão, então o painel mostra o passo a passo do Safari. Sem service worker de propósito: o painel depende do banco, e funcionar offline não ajudaria.
 - **Várias empresas no mesmo login.** Um seletor troca de empresa, e ao criar uma pesquisa dá para **copiar as perguntas** de outra empresa do mesmo dono, em vez de digitar tudo de novo. As regras RLS garantem que só aparecem pesquisas do próprio dono.
+- **Filtros na lista de respostas.** Busca nos comentários, faixa de nota e período, num formulário comum (método GET, sem JavaScript) com os valores na URL, então o link pode ser guardado. A validação roda no servidor e a lógica vive numa função do Postgres com testes SQL: o período usa o dia em São Paulo, e `%` e `_` digitados na busca valem como texto comum. A marca de suspeita continua calculada sobre todas as respostas, e a planilha CSV respeita os mesmos filtros.
+- **Pesquisa pronta para o cliente.** Quem monta o catálogo de perguntas (o dono do sistema) escolhe uma pesquisa e envia uma cópia para a conta do cliente, que já a encontra pronta. A escrita usa a chave de servidor, mas só depois de conferir que quem pediu é o administrador, que a pesquisa é dele e que a empresa de destino é de outra pessoa.
 
 ## Quer ver o código?
 
