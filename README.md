@@ -24,9 +24,15 @@ Cerca de 20 segundos, com dados de exemplo (uma padaria fictícia): o cliente d�
 
 ## Telas
 
-**Pesquisa que o cliente responde pelo celular** (abre pelo QR code, sem login). Nota de 1 a 10 e, se a nota for baixa, uma caixa opcional "Onde podemos melhorar?":
+**Pesquisa que o cliente responde pelo celular** (abre pelo QR code, sem login). Nota de 1 a 10 e, se a nota não for a máxima, uma caixa opcional "Onde podemos melhorar?":
 
 ![Pesquisa pública](prints/pesquisa-publica.jpg)
+
+**A empresa escolhe a escala**: de 1 a 10 ou de 1 a 5, por pesquisa. Na escala de 5 a caixa abre com nota 4 ou menos (na de 10, com 9 ou menos). A escolha trava depois da primeira resposta, para as médias não misturarem escalas:
+
+| Pesquisa de 1 a 5 | Escolha no editor |
+|---|---|
+| ![Pesquisa em escala de 1 a 5, com a caixa aberta numa nota 3](prints/pesquisa-publica-1a5.png) | ![Cartão para escolher a escala](prints/editor-escala.png) |
 
 **Painel da empresa**
 
@@ -44,7 +50,7 @@ Cerca de 20 segundos, com dados de exemplo (uma padaria fictícia): o cliente d�
 
 ![Nota por dia da semana e turno](prints/dashboard-dia-turno.jpg)
 
-**Respostas**, com selo de suspeita e opção de descartar:
+**Respostas**, com selo de suspeita, opção de descartar e, nas descartadas, "Apagar de vez" (com confirmação), para limpar respostas de teste:
 
 ![Lista de respostas](prints/respostas.jpg)
 
@@ -57,6 +63,12 @@ Cerca de 20 segundos, com dados de exemplo (uma padaria fictícia): o cliente d�
 | Claro | Escuro |
 |---|---|
 | ![Cartaz claro](prints/cartaz-claro.png) | ![Cartaz escuro](prints/cartaz-escuro.png) |
+
+**Painel de exemplo na página inicial**, desenhado com os mesmos componentes do painel real (não é uma foto), então fica nítido e acompanha o tema claro ou escuro de quem visita:
+
+| Claro | Escuro |
+|---|---|
+| ![Painel de exemplo, tema claro](prints/painel-landing-claro.png) | ![Painel de exemplo, tema escuro](prints/painel-landing-escuro.png) |
 
 > Os números dos prints são de exemplo, criados só para a demonstração, e o texto da IA no relatório foi simulado.
 
@@ -84,7 +96,9 @@ Cerca de 20 segundos, com dados de exemplo (uma padaria fictícia): o cliente d�
 - **Instala como app, sem loja.** O painel é um PWA: manifesto, ícones próprios e um botão "Colocar na tela inicial" no Android. O iPhone não permite esse botão, então o painel mostra o passo a passo do Safari. Sem service worker de propósito: o painel depende do banco, e funcionar offline não ajudaria.
 - **Várias empresas no mesmo login.** Um seletor troca de empresa, e ao criar uma pesquisa dá para **copiar as perguntas** de outra empresa do mesmo dono, em vez de digitar tudo de novo. As regras RLS garantem que só aparecem pesquisas do próprio dono.
 - **Filtros na lista de respostas.** Busca nos comentários, faixa de nota e período, num formulário comum (método GET, sem JavaScript) com os valores na URL, então o link pode ser guardado. A validação roda no servidor e a lógica vive numa função do Postgres com testes SQL: o período usa o dia em São Paulo, e `%` e `_` digitados na busca valem como texto comum. A marca de suspeita continua calculada sobre todas as respostas, e a planilha CSV respeita os mesmos filtros.
-- **Pesquisa pronta para o cliente.** Quem monta o catálogo de perguntas (o dono do sistema) escolhe uma pesquisa e envia uma cópia para a conta do cliente, que já a encontra pronta. A escrita usa a chave de servidor, mas só depois de conferir que quem pediu é o administrador, que a pesquisa é dele e que a empresa de destino é de outra pessoa.
+- **Escala de notas por pesquisa.** A empresa escolhe 1 a 10 ou 1 a 5. As notas ficam guardadas como o cliente deu, e o painel leva tudo à mesma régua só onde precisa comparar: as faixas de cor, a suspeita de rajada e o filtro usam a nota proporcional (4 de 5 vale como 8 de 10). O NPS só existe na escala de 10. O banco recusa nota fora da escala e trava a troca depois da primeira resposta, com testes SQL no CI.
+- **Pesquisa pronta para o cliente.** Quem monta o catálogo de perguntas (o dono do sistema) escolhe uma pesquisa e envia uma cópia para a conta do cliente, que já a encontra pronta. A escrita usa a chave de servidor, mas só depois de conferir que quem pediu é o administrador, que a pesquisa é dele e que a empresa de destino é de outra pessoa. O convite de cadastro também pode vir com uma pesquisa modelo: a conta nova já nasce com a cópia, e se a cópia falhar o cadastro continua normal.
+- **Apagar com segurança.** Respostas só se apagam de vez depois de descartadas, com pop-up de confirmação. O servidor confere pelo RLS que a resposta é do usuário e que está descartada, e só então apaga com a chave de servidor.
 
 ## Quer ver o código?
 
