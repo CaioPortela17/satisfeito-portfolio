@@ -24,9 +24,15 @@ About 20 seconds, with sample data (a fictional bakery): the customer gives scor
 
 ## Screens
 
-**Survey answered on the phone** (opened by the QR code, no login). A 1 to 10 score and, when the score is low, an optional "Where can we improve?" box:
+**Survey answered on the phone** (opened by the QR code, no login). A 1 to 10 score and, when the score is not the maximum, an optional "Where can we improve?" box:
 
 ![Public survey](prints/pesquisa-publica.jpg)
+
+**The business picks the scale**: 1 to 10 or 1 to 5, per survey. On the 5 scale the box opens for a score of 4 or less (on the 10 scale, 9 or less). The choice locks after the first answer, so averages never mix scales:
+
+| 1 to 5 survey | Picking it in the editor |
+|---|---|
+| ![Survey on a 1 to 5 scale, with the box open on a score of 3](prints/pesquisa-publica-1a5.png) | ![Card to choose the scale](prints/editor-escala.png) |
 
 **Company dashboard**
 
@@ -44,7 +50,7 @@ About 20 seconds, with sample data (a fictional bakery): the customer gives scor
 
 ![Score by weekday and shift](prints/dashboard-dia-turno.jpg)
 
-**Responses**, with a suspicious badge and a discard option:
+**Responses**, with a suspicious badge, a discard option and, on discarded ones, "Apagar de vez" (delete for good, with confirmation) to clean up test responses:
 
 ![Response list](prints/respostas.jpg)
 
@@ -57,6 +63,12 @@ About 20 seconds, with sample data (a fictional bakery): the customer gives scor
 | Light | Dark |
 |---|---|
 | ![Light poster](prints/cartaz-claro.png) | ![Dark poster](prints/cartaz-escuro.png) |
+
+**Example dashboard on the home page**, drawn with the same components as the real dashboard (it is not a photo), so it stays sharp and follows the visitor's light or dark theme:
+
+| Light | Dark |
+|---|---|
+| ![Example dashboard, light theme](prints/painel-landing-claro.png) | ![Example dashboard, dark theme](prints/painel-landing-escuro.png) |
 
 > The numbers in the screenshots are sample data created only for the demo, and the AI text in the report was simulated. The app itself is in Portuguese.
 
@@ -84,7 +96,9 @@ About 20 seconds, with sample data (a fictional bakery): the customer gives scor
 - **Installs as an app, no app store.** The dashboard is a PWA: manifest, custom icons and an "Add to home screen" button on Android. iPhone does not allow that button, so the dashboard shows the Safari step by step instead. No service worker on purpose: the dashboard depends on the database, so working offline would not help.
 - **Several companies under one login.** A selector switches company, and when creating a survey you can **copy the questions** from another company of the same owner instead of typing everything again. RLS rules guarantee only the owner's own surveys show up.
 - **Filters on the response list.** Search in comments, score range and period, in a plain form (GET method, no JavaScript) with the values in the URL, so the link can be saved. Validation runs on the server and the logic lives in a Postgres function with SQL tests: the period uses the day in São Paulo, and `%` and `_` typed in the search count as plain text. The suspicious flag is still computed over all responses, and the CSV export follows the same filters.
-- **Ready-made survey for the customer.** The system owner, who maintains the question catalog, picks a survey and sends a copy to the customer's account, which finds it ready. The write uses the server key, but only after checking that the caller is the admin, that the survey is theirs and that the destination company belongs to someone else.
+- **Score scale per survey.** The business picks 1 to 10 or 1 to 5. Scores are stored as the customer gave them, and the dashboard brings everything to the same ruler only where it must compare: color bands, burst detection and the filter use the proportional score (4 of 5 counts as 8 of 10). NPS only exists on the 10 scale. The database rejects out-of-scale scores and locks the change after the first answer, with SQL tests in CI.
+- **Ready-made survey for the customer.** The system owner, who maintains the question catalog, picks a survey and sends a copy to the customer's account, which finds it ready. The write uses the server key, but only after checking that the caller is the admin, that the survey is theirs and that the destination company belongs to someone else. The signup invite can also carry a template survey: the new account is born with the copy, and if the copy fails the signup still goes through.
+- **Deleting safely.** Responses can only be deleted for good after being discarded, with a confirmation dialog. The server checks through RLS that the response belongs to the user and is discarded, and only then deletes with the server key.
 
 ## Want to see the code?
 
