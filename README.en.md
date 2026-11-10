@@ -2,7 +2,7 @@
 
 **English** | [Português](README.md)
 
-> Simple, fast customer satisfaction surveys for restaurants, snack bars and shops.
+> Simple, fast customer satisfaction surveys for businesses.
 
 This repository is the project's **showcase**: it shows what Satisfeito does, the screens and the technical decisions. The system's source code lives in a private repository.
 
