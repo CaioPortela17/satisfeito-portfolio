@@ -2,7 +2,7 @@
 
 [English](README.en.md) | **Português**
 
-> Pesquisa de satisfação simples e rápida para negócios locais: restaurantes, lanchonetes e lojas.
+> Pesquisa de satisfação simples e rápida para restaurantes, lanchonetes e lojas.
 
 Este repositório é a **vitrine** do projeto: mostra o que o Satisfeito faz, as telas e as decisões técnicas. O código do sistema fica em um repositório privado.
 
