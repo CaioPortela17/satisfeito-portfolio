@@ -6,9 +6,7 @@
 
 Este repositório é a **vitrine** do projeto: mostra o que o Satisfeito faz, as telas e as decisões técnicas. O código do sistema fica em um repositório privado.
 
-**Veja o painel sem cadastro:** https://satisfeito.vercel.app/demo (dados de exemplo, de uma empresa fictícia)
-
-**Site:** https://satisfeito.vercel.app (o cadastro de empresas é por convite)
+**Demonstração online:** https://satisfeito.vercel.app (o cadastro de empresas é por convite)
 
 ---
 
@@ -66,11 +64,7 @@ Cerca de 20 segundos, com dados de exemplo (uma padaria fictícia): o cliente d�
 |---|---|
 | ![Cartaz claro](prints/cartaz-claro.png) | ![Cartaz escuro](prints/cartaz-escuro.png) |
 
-**Demonstração do painel** (`/demo`, sem cadastro e sem login): o painel de Resultados completo com dados de exemplo de uma padaria fictícia, para quem quer ver o produto funcionando antes de falar com a gente. O relatório de IA da demonstração é um texto fixo de exemplo:
-
-![Demonstração do painel](prints/demo-painel.jpg)
-
-**Painel de exemplo na página inicial**, desenhado com os mesmos componentes do painel real (não é uma foto) e com os mesmos dados da demonstração, então fica nítido e acompanha o tema claro ou escuro de quem visita:
+**Painel de exemplo na página inicial**, desenhado com os mesmos componentes do painel real (não é uma foto), então fica nítido e acompanha o tema claro ou escuro de quem visita:
 
 | Claro | Escuro |
 |---|---|
@@ -105,7 +99,6 @@ Cerca de 20 segundos, com dados de exemplo (uma padaria fictícia): o cliente d�
 - **Escala de notas por pesquisa.** A empresa escolhe 1 a 10 ou 1 a 5. As notas ficam guardadas como o cliente deu, e o painel leva tudo à mesma régua só onde precisa comparar: as faixas de cor, a suspeita de rajada e o filtro usam a nota proporcional (4 de 5 vale como 8 de 10). O NPS só existe na escala de 10. O banco recusa nota fora da escala e trava a troca depois da primeira resposta, com testes SQL no CI.
 - **Pesquisa pronta para o cliente.** Quem monta o catálogo de perguntas (o dono do sistema) escolhe uma pesquisa e envia uma cópia para a conta do cliente, que já a encontra pronta. A escrita usa a chave de servidor, mas só depois de conferir que quem pediu é o administrador, que a pesquisa é dele e que a empresa de destino é de outra pessoa. O convite de cadastro também pode vir com uma pesquisa modelo: a conta nova já nasce com a cópia, e se a cópia falhar o cadastro continua normal.
 - **Apagar com segurança.** Respostas só se apagam de vez depois de descartadas, com pop-up de confirmação. O servidor confere pelo RLS que a resposta é do usuário e que está descartada, e só então apaga com a chave de servidor.
-- **Demonstração pública feita com o painel de verdade.** A página `/demo` monta o painel real com dados fictícios fixos: sem banco, sem IA e sem login, então não expõe nada e não gasta crédito. Um teste automático confere que os números de exemplo fecham entre si (a soma dos dias é o total, o NPS segue a fórmula, os destaques são a melhor e a pior pergunta). Como usa os mesmos componentes do painel, quando o painel muda a demonstração muda junto.
 
 ## Quer ver o código?
 
