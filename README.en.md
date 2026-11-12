@@ -70,6 +70,12 @@ About 20 seconds, with sample data (a fictional bakery): the customer gives scor
 |---|---|
 | ![Example dashboard, light theme](prints/painel-landing-claro.png) | ![Example dashboard, dark theme](prints/painel-landing-escuro.png) |
 
+**Poster on the home page**, also built with the real component: visitors see the poster exactly as it prints.
+
+| Light | Dark |
+|---|---|
+| ![Poster section on the home page, light theme](prints/landing-cartazes-claro.png) | ![Poster section on the home page, dark theme](prints/landing-cartazes-escuro.png) |
+
 > The numbers in the screenshots are sample data created only for the demo, and the AI text in the report was simulated. The app itself is in Portuguese.
 
 ## Tech stack
