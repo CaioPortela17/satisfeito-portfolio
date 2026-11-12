@@ -70,6 +70,12 @@ Cerca de 20 segundos, com dados de exemplo (uma padaria fictícia): o cliente d�
 |---|---|
 | ![Painel de exemplo, tema claro](prints/painel-landing-claro.png) | ![Painel de exemplo, tema escuro](prints/painel-landing-escuro.png) |
 
+**Cartaz na página inicial**, também com o componente real: quem visita vê o cartaz exatamente como ele sai na impressão.
+
+| Claro | Escuro |
+|---|---|
+| ![Seção do cartaz na página inicial, tema claro](prints/landing-cartazes-claro.png) | ![Seção do cartaz na página inicial, tema escuro](prints/landing-cartazes-escuro.png) |
+
 > Os números dos prints são de exemplo, criados só para a demonstração, e o texto da IA no relatório foi simulado.
 
 ## Tecnologias
