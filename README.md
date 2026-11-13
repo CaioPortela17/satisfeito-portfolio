@@ -28,6 +28,8 @@ Cerca de 20 segundos, com dados de exemplo (uma padaria fictícia): o cliente d�
 
 ![Pesquisa pública](prints/pesquisa-publica.jpg)
 
+Na tela de agradecimento, a empresa pode mostrar um botão **Avaliar no Google**, igual para todos os clientes. E, quando a nota é baixa, o cliente pode deixar o **WhatsApp** (opcional) para a empresa falar com ele e tentar resolver o problema.
+
 **A empresa escolhe a escala**: de 1 a 10 ou de 1 a 5, por pesquisa. Na escala de 5 a caixa abre com nota 4 ou menos (na de 10, com 9 ou menos). A escolha trava depois da primeira resposta, para as médias não misturarem escalas:
 
 | Pesquisa de 1 a 5 | Escolha no editor |
@@ -105,6 +107,8 @@ Cerca de 20 segundos, com dados de exemplo (uma padaria fictícia): o cliente d�
 - **Escala de notas por pesquisa.** A empresa escolhe 1 a 10 ou 1 a 5. As notas ficam guardadas como o cliente deu, e o painel leva tudo à mesma régua só onde precisa comparar: as faixas de cor, a suspeita de rajada e o filtro usam a nota proporcional (4 de 5 vale como 8 de 10). O NPS só existe na escala de 10. O banco recusa nota fora da escala e trava a troca depois da primeira resposta, com testes SQL no CI.
 - **Pesquisa pronta para o cliente.** Quem monta o catálogo de perguntas (o dono do sistema) escolhe uma pesquisa e envia uma cópia para a conta do cliente, que já a encontra pronta. A escrita usa a chave de servidor, mas só depois de conferir que quem pediu é o administrador, que a pesquisa é dele e que a empresa de destino é de outra pessoa. O convite de cadastro também pode vir com uma pesquisa modelo: a conta nova já nasce com a cópia, e se a cópia falhar o cadastro continua normal.
 - **Apagar com segurança.** Respostas só se apagam de vez depois de descartadas, com pop-up de confirmação. O servidor confere pelo RLS que a resposta é do usuário e que está descartada, e só então apaga com a chave de servidor.
+- **Avaliação no Google sem filtrar por nota.** O botão aparece para todos os clientes, com qualquer nota: mostrar só para quem está satisfeito é "review gating", que o Google proíbe. O link da empresa só aceita endereços do Google para avaliação, conferido no app e numa trava (`CHECK`) do banco, para o campo não virar um jeito de mandar clientes a outro site.
+- **Contato opcional que não vaza.** O WhatsApp só é pedido uma vez, no fim, e só com nota abaixo do máximo. Fica numa tabela à parte, só o dono da empresa lê (RLS), é guardado só em dígitos num formato conferido pelo servidor e pelo banco, e some junto com a resposta (cascata). Nunca vai para a IA nem para a planilha, e a política de privacidade diz isso.
 
 ## Quer ver o código?
 

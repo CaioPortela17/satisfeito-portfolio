@@ -28,6 +28,8 @@ About 20 seconds, with sample data (a fictional bakery): the customer gives scor
 
 ![Public survey](prints/pesquisa-publica.jpg)
 
+On the thank-you screen, the company can show an **Avaliar no Google** (Review on Google) button, the same for every customer. And when the score is low, the customer can leave a **WhatsApp** number (optional) so the company can reach out and try to fix the problem.
+
 **The business picks the scale**: 1 to 10 or 1 to 5, per survey. On the 5 scale the box opens for a score of 4 or less (on the 10 scale, 9 or less). The choice locks after the first answer, so averages never mix scales:
 
 | 1 to 5 survey | Picking it in the editor |
@@ -105,6 +107,8 @@ About 20 seconds, with sample data (a fictional bakery): the customer gives scor
 - **Score scale per survey.** The business picks 1 to 10 or 1 to 5. Scores are stored as the customer gave them, and the dashboard brings everything to the same ruler only where it must compare: color bands, burst detection and the filter use the proportional score (4 of 5 counts as 8 of 10). NPS only exists on the 10 scale. The database rejects out-of-scale scores and locks the change after the first answer, with SQL tests in CI.
 - **Ready-made survey for the customer.** The system owner, who maintains the question catalog, picks a survey and sends a copy to the customer's account, which finds it ready. The write uses the server key, but only after checking that the caller is the admin, that the survey is theirs and that the destination company belongs to someone else. The signup invite can also carry a template survey: the new account is born with the copy, and if the copy fails the signup still goes through.
 - **Deleting safely.** Responses can only be deleted for good after being discarded, with a confirmation dialog. The server checks through RLS that the response belongs to the user and is discarded, and only then deletes with the server key.
+- **Google review without filtering by score.** The button shows for every customer, whatever the score: showing it only to satisfied customers is "review gating", which Google forbids. The company link only accepts Google review addresses, checked in the app and by a database `CHECK`, so the field cannot become a way to send customers to another site.
+- **Optional contact that does not leak.** The WhatsApp number is asked once, at the end, and only when a score is below the maximum. It lives in its own table, only the company owner can read it (RLS), it is stored as digits only in a format checked by both the server and the database, and it disappears with the response (cascade). It never goes to the AI or to the spreadsheet, and the privacy policy says so.
 
 ## Want to see the code?
 
