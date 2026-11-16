@@ -6,7 +6,7 @@
 
 Este repositório é a **vitrine** do projeto: mostra o que o Satisfeito faz, as telas e as decisões técnicas. O código do sistema fica em um repositório privado.
 
-**Demonstração online:** https://satisfeito.vercel.app (o cadastro de empresas é por convite)
+**Demonstração online:** https://meusatisfeito.com.br (o cadastro de empresas é por convite)
 
 ---
 
